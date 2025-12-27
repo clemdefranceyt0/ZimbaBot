@@ -44,25 +44,27 @@ async def on_ready():
 
 
 @bot.slash_command(name="join", description="how to join?")
-async def join(ctx):
+async def join_cmd(ctx):
     await ctx.respond("Pour nous rejoindre, va sur https://www.nationsglory.fr, télécharge le launcher, crée toi un compte et lance le jeux. entre sur le serveur **blue** et fais /f join zimbabwe.")
 
+
 @bot.slash_command(name="souspower", description="verifie les pays sous-power")
-async def join(ctx):
+async def souspower_cmd(ctx):
     result = await respon()
     if result:
         channel = bot.get_channel(1454267038087385128)
-        timestamp = datetime.utcnow().time()
+        timestamp = datetime.utcnow().strftime("%H:%M:%S")
         await channel.send(f"{timestamp} || {result}")
     await ctx.respond("okay, je lance")
+
 
 @tasks.loop(seconds=3600)
 async def auto_message():
     result = await respon()
     if result:
         channel = bot.get_channel(1454267038087385128)
-        timestamp = datetime.utcnow().time()
-        await channel.send(f"{timestamp}, || {result}")
+        timestamp = datetime.utcnow().strftime("%H:%M:%S")
+        await channel.send(f"{timestamp} || {result}")
 
 
 bot.run(os.getenv("DISCORD_TOKEN"))
