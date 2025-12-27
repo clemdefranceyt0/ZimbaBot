@@ -78,7 +78,7 @@ async def ng(ctx):
     await ctx.respond("NationsGlory est un serveur Minecraft très populaire, basé sur un concept unique : tu incarnes un pays réel sur une carte de la Terre, et tu dois le développer, le défendre et le faire prospérer.")
 
 
-@bot.slash_command(name="Wiki", description="Le wiki de nationsglory")
+@bot.slash_command(name="wiki", description="Le wiki de nationsglory")
 async def wiki(ctx):
     await ctx.respond("Retrouve le wiki officiel de Nationsglory ici ==> https://wiki.nationsglory.fr/fr/")
 
@@ -88,17 +88,17 @@ async def forum(ctx):
     await ctx.respond("Retrouve le Codex officiel de Nationsglory ici ==> https://nationsglory.fr/forums/")
 
 
-@bot.slash_command(name="Discord", description="Les Différent Serveur discord de nationsglory")
+@bot.slash_command(name="discord", description="Les Différent Serveur discord de nationsglory")
 async def discord(ctx):
     await ctx.respond("Retrouve le Serveur Nationsglory officle ==> https://discord.gg/nationsglory \n et le serveur discord du blue ==> https://discord.gg/nationsglory-blue-780390423109042196")
 
 
-@bot.slash_command(name="Blue", description="Le blue, c'est quoi?")
+@bot.slash_command(name="blue", description="Le blue, c'est quoi?")
 async def blue(ctx):
     await ctx.respond("Le serveur blue fais partie de l'un des sous-serveur de nationsglory. c'est le premier crée. il possède sont propre **staff**, sont propre **spawn**, ces propres events, thèmes etc...")
 
 
-@bot.slash_command(name="Site", description="Le site de nationsglory")
+@bot.slash_command(name="site", description="Le site de nationsglory")
 async def site(ctx):
     await ctx.respond("Retrouve le site de nationsglory ici ==> https://www.nationsglory.fr")
 
