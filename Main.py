@@ -23,6 +23,8 @@ async def respon():
 
     claimed_names = [item["name"] for item in data["claimed"]]
 
+    results = []  
+
     for index in claimed_names:
         urll = f"https://publicapi.nationsglory.fr/country/blue/{index}"
         responsse = requests.get(urll, headers=headers)
@@ -33,8 +35,10 @@ async def respon():
         count_claims = int(dataa.get("count_claims", 0))
 
         if count_claims > power:
-            return name  
-    return None  
+            results.append(name)
+
+    return results  
+ 
 
 
 @bot.event
@@ -50,12 +54,18 @@ async def join_cmd(ctx):
 
 @bot.slash_command(name="souspower", description="verifie les pays sous-power")
 async def souspower_cmd(ctx):
-    result = await respon()
-    if result:
-        channel = bot.get_channel(1454267038087385128)
+    results = await respon()
+    channel = bot.get_channel(1454267038087385128)
+
+    if results:
         timestamp = datetime.utcnow().strftime("%H:%M:%S")
-        await channel.send(f"{timestamp} || {result}")
+        liste = ", ".join(results)
+        await channel.send(f"{timestamp} || Sous-power : {liste}")
+    else:
+        await channel.send("Aucun pays sous-power pour le moment.")
+
     await ctx.respond("okay, je lance")
+
 
 
 @bot.slash_command(name="machine", description="Wiki sur les machines")
@@ -89,9 +99,9 @@ async def blue(ctx):
 
 
 @bot.slash_command(name="Site", description="Le site de nationsglory")
-async def blue(ctx):
+async def site(ctx):
     await ctx.respond("Retrouve le site de nationsglory ici ==> https://www.nationsglory.fr")
-    
+
 
 @tasks.loop(seconds=3600)
 async def auto_message():
