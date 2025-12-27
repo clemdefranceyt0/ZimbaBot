@@ -46,13 +46,20 @@ async def on_ready():
 async def join(ctx):
     await ctx.respond("Pour nous rejoindre, va sur https://www.nationsglory.fr, télécharge le launcher, crée toi un compte et lance le jeux. entre sur le serveur **blue** et fais /f join zimbabwe.")
 
+@bot.slash_command(name="souspower", description="verifie les pays sous-power")
+async def join(ctx):
+    result = await respon()
+    if result:
+        channel = bot.get_channel(1454267038087385128)
+        await channel.send(f"@clemdefrance0, {result}")
+    await ctx.respond("okay, je lance")
 
 @tasks.loop(seconds=3600)
 async def auto_message():
     result = await respon()
     if result:
         channel = bot.get_channel(1454267038087385128)
-        await channel.send(f"@everyone, {result}")
+        await channel.send(f"@clemdefrance0 {result}")
 
 
 bot.run(os.getenv("DISCORD_TOKEN"))
