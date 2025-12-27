@@ -51,7 +51,8 @@ async def join(ctx):
     result = await respon()
     if result:
         channel = bot.get_channel(1454267038087385128)
-        await channel.send(f"@clemdefrance0, {result}")
+        timestamp = message.created_at
+        await channel.send(f"@timestamp, || {result}")
     await ctx.respond("okay, je lance")
 
 @tasks.loop(seconds=3600)
@@ -59,7 +60,7 @@ async def auto_message():
     result = await respon()
     if result:
         channel = bot.get_channel(1454267038087385128)
-        await channel.send(f"@clemdefrance0 {result}")
+        await channel.send(f"@timestamp, || {result}")
 
 
 bot.run(os.getenv("DISCORD_TOKEN"))
