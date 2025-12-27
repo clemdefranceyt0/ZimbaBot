@@ -44,6 +44,7 @@ async def respon():
 @bot.event
 async def on_ready():
     print("connected")
+    await bot.sync_commands()
     auto_message.start()  
 
 
