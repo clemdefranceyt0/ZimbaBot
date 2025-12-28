@@ -1,4 +1,4 @@
-py-cord
-python-dotenv
+nextcord
 requests
+python-dotenv
 datetime
