@@ -156,6 +156,11 @@ async def site(ctx):
     await ctx.response.send_message("Site officiel : https://www.nationsglory.fr")
 
 
+@bot.slash_command(name="presentation", description="une presentation de nationsglory!")
+async def pres(ctx):
+    await ctx.response.send_message("Regarde attentivement cette vidéo pour apprendre les bases de nationsglory! https://youtu.be/u5b5t-9s2nE")
+
+
 # ---------------------------------------------------------
 #   TÂCHE AUTOMATIQUE : Vérifie toutes les heures
 # ---------------------------------------------------------
