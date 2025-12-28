@@ -1,5 +1,5 @@
 nextcord
-requests
+aiohttp
 python-dotenv
 datetime
 flask
