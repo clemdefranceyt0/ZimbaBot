@@ -5,6 +5,22 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 import asyncio
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "I'm alive"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
 
 # Fix event loop for Python 3.11+
 asyncio.set_event_loop(asyncio.new_event_loop())
@@ -147,4 +163,6 @@ async def auto_message():
 # ---------------------------------------------------------
 #   LANCEMENT DU BOT
 # ---------------------------------------------------------
+keep_alive()
 bot.run(os.getenv("DISCORD_TOKEN"))
+
