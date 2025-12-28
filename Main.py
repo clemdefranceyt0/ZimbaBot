@@ -28,7 +28,6 @@ async def create_session():
 #   FONCTION : Vérifie les pays sous-power (optimisée)
 # ---------------------------------------------------------
 async def fetch_country(name, headers):
-    """Récupère les infos d’un pays."""
     url = f"https://publicapi.nationsglory.fr/country/blue/{name}"
     async with session.get(url, headers=headers) as resp:
         if resp.status != 200:
@@ -43,7 +42,6 @@ async def respon():
         "Authorization": f"Bearer {os.getenv('NG_API_KEY')}"
     }
 
-    # 1) Récupère la liste des pays
     async with session.get("https://publicapi.nationsglory.fr/country/list/blue", headers=headers) as resp:
         if resp.status != 200:
             return []
@@ -51,11 +49,9 @@ async def respon():
 
     claimed_names = [item["name"] for item in data["claimed"]]
 
-    # 2) Requêtes parallèles
     tasks_list = [fetch_country(name, headers) for name in claimed_names]
     countries = await asyncio.gather(*tasks_list)
 
-    # 3) Filtrage sous-power
     results = []
     for dataa in countries:
         if not dataa:
@@ -112,6 +108,52 @@ async def souspower_cmd(ctx):
         await channel.send("Aucun pays sous-power pour le moment.")
 
     await ctx.followup.send("Okay, je lance.")
+
+
+@bot.slash_command(name="machine", description="Wiki sur les machines")
+async def machine(ctx):
+    await ctx.response.send_message(
+        "Wiki des machines : https://wiki.nationsglory.fr/fr/category/java-les-machines-wj7rgi/"
+    )
+
+
+@bot.slash_command(name="nationsglory", description="NationsGlory, c'est quoi ?")
+async def ng(ctx):
+    await ctx.response.send_message(
+        "NationsGlory est un serveur Minecraft où tu incarnes un pays réel sur une carte de la Terre "
+        "et tu dois le développer, le défendre et le faire prospérer."
+    )
+
+
+@bot.slash_command(name="wiki", description="Wiki de NationsGlory")
+async def wiki(ctx):
+    await ctx.response.send_message("Wiki officiel : https://wiki.nationsglory.fr/fr/")
+
+
+@bot.slash_command(name="forum", description="Forum de NationsGlory")
+async def forum(ctx):
+    await ctx.response.send_message("Forum officiel : https://nationsglory.fr/forums/")
+
+
+@bot.slash_command(name="discord", description="Serveurs Discord de NationsGlory")
+async def discord_cmd(ctx):
+    await ctx.response.send_message(
+        "Serveur officiel : https://discord.gg/nationsglory\n"
+        "Serveur Blue : https://discord.gg/nationsglory-blue-780390423109042196"
+    )
+
+
+@bot.slash_command(name="blue", description="Le serveur Blue, c'est quoi ?")
+async def blue(ctx):
+    await ctx.response.send_message(
+        "Le serveur Blue est le premier serveur de NationsGlory. "
+        "Il possède son propre staff, spawn, events et thèmes."
+    )
+
+
+@bot.slash_command(name="site", description="Site officiel de NationsGlory")
+async def site(ctx):
+    await ctx.response.send_message("Site officiel : https://www.nationsglory.fr")
 
 
 # ---------------------------------------------------------
