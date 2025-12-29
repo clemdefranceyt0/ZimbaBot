@@ -161,6 +161,10 @@ async def pres(ctx):
     await ctx.response.send_message("Regarde attentivement cette vidéo pour apprendre les bases de nationsglory! https://youtu.be/u5b5t-9s2nE")
 
 
+@bot.slash_command(name="light", description="Comment augmenté la luminosité sur nationsglory?")
+async def light(ctx):
+    await ctx.response.send_message("Regarde attentivement cette vidéo et suis le tuto! https://youtu.be/wXJZztcjA64")
+
 # ---------------------------------------------------------
 #   TÂCHE AUTOMATIQUE : Vérifie toutes les heures
 # ---------------------------------------------------------
@@ -182,3 +186,4 @@ async def auto_message():
 #   LANCEMENT DU BOT
 # ---------------------------------------------------------
 bot.run(os.getenv("DISCORD_TOKEN"))
+
